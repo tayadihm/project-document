@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Belajar CRUD di Laravel 5.8</title>
+    <title>Form Upload Document</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
   </head>
   <body>
