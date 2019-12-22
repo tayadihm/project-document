@@ -8,4 +8,5 @@ class Documents extends Model
 {
 
     protected $table = 'documents';
+
 }

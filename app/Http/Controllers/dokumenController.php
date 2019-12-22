@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use Session;
+use Redirect;
 use App\Documents;
 
 class dokumenController extends Controller
@@ -35,7 +38,6 @@ class dokumenController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $documents = new Documents;
         $documents->judul_dokumen = $request->get('judul_dokumen');
         $documents->no_surat_satu = $request->get('no_surat_satu');
@@ -44,9 +46,18 @@ class dokumenController extends Controller
         $documents->pic_satu = $request->get('pic_satu');
         $documents->pic_dua = $request->get('pic_dua');
         $documents->jangka_waktu = $request->get('jangka_waktu');
+        $documents->file_upload = $request->file('file_upload');
+
+        $rules = array(
+            'judul_dokumen' => 'required',
+            'file_upload' => 'required|max:10000|mimes:pdf,doc,docx,jpeg,png,jpg'
+            );
+
+        $file_upload = $request->file('file_upload');
+        $tujuan_upload = 'document-upload';
+        $file_upload->move($tujuan_upload, $file_upload->getClientOriginalName());
         $documents->save();
-        
-        return redirect('documents')->with('success', 'Selamat data documents berhasil disimpan');
+        return redirect('documents')->with('alert-success','Data berhasil ditambahkan!');
     }
     /**
      * Display the specified resource.
@@ -86,6 +97,7 @@ class dokumenController extends Controller
 	    $documents->pic_satu = $request->pic_satu;
 	    $documents->pic_dua = $request->pic_dua;
 	    $documents->jangka_waktu = $request->jangka_waktu;
+        $documents->file_upload = $request->file_upload;
 	    $documents->save();
 	    return redirect()->route('documents.index')->with('alert-success', 'Data berhasil diubah!');
     }
@@ -102,4 +114,5 @@ class dokumenController extends Controller
 
         return redirect()->route('documents.index');
     }
+
 }

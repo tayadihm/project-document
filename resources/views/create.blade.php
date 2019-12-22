@@ -4,10 +4,15 @@
     <meta charset="utf-8">
     <title>Form Upload Document</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="container">
       <h2 style="text-align:left">Tambah Dokumen</h2><br/>
+
       <form method="post" action="{{url('documents')}}" enctype="multipart/form-data">
         @csrf
         <div class="row">
@@ -16,6 +21,10 @@
             <label for="Judul">Judul Dokumen:</label>
             <input type="text" class="form-control" name="judul_dokumen">
           </div>
+        <div class="row">
+            <label for="file">File Dokumen:</label>
+            <input type="file" name="file_upload">
+        </div>
         </div>
         <div class="row">
           <div class="col-md-1"></div>
@@ -68,5 +77,20 @@
         </div>
       </form>
     </div>
+    <script>
+  @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info') }}";
+    switch(type){
+        
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+  @endif
+</script>
   </body>
 </html>

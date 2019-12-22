@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUploadDocumentsTable extends Migration
+class CreateNotifsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateUploadDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('upload_documents', function (Blueprint $table) {
+        Schema::create('notifs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('nama');
-            $table->String('file');
+            $table->String('email');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateUploadDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('upload_documents');
+        Schema::dropIfExists('notifs');
     }
 }

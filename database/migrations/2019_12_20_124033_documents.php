@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDocumentsTable extends Migration
+class Documents extends Migration
 {
     /**
      * Run the migrations.
@@ -22,8 +22,8 @@ class CreateDocumentsTable extends Migration
             $table->string('pic_satu');
             $table->string('pic_dua');
             $table->string('jangka_waktu');
+            $table->string('file_upload');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

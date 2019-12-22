@@ -11,8 +11,9 @@
 |
 */
 
-Route::resource('documents','dokumenController');
-
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('documents','dokumenController');
+	
